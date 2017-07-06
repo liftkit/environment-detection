@@ -1,0 +1,23 @@
+{
+    "name": "liftkit/environment-detection",
+    "description": "A library for defining and detecting execution environments",
+    "type": "library",
+    "require-dev": {
+        "php": ">=5.6",
+        "phpunit/phpunit": "^6.2"
+    },
+    "license": "LGPL 2.1",
+    "authors": [
+        {
+            "name": "Ryan Williams",
+            "email": "rwilliams@stream9.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "LiftKit\\EnvironmentDetection\\": "src/",
+            "LiftKit\\Tests\\Unit\\EnvironmentDetection\\": "tests/unit/",
+            "LiftKit\\Tests\\Mock\\EnvironmentDetection\\": "tests/mock/"
+        }
+    }
+}
