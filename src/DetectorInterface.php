@@ -66,6 +66,16 @@
 
 
 		/**
+		 * Returns $environment if no other condition is matched
+		 *
+		 * @param string $environment
+		 *
+		 * @return self
+		 */
+		public function defaultTo ($environment);
+
+
+		/**
 		 * Returns the first matched environment string, testing each condition in the order they were defined.
 		 *
 		 * @return string|null Returns null if no match is found

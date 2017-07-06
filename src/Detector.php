@@ -7,6 +7,7 @@
 	final class Detector implements DetectorInterface
 	{
 		private $rules = [];
+		private $default = null;
 
 
 		/**
@@ -20,6 +21,10 @@
 		public function ifHttpHost ($pattern, $environment)
 		{
 			$this->rules[] = function () use ($pattern, $environment) {
+				if (! isset($_SERVER)) {
+					return null;
+				}
+
 				if ($this->match($_SERVER['HTTP_HOST'], $pattern)) {
 					return $environment;
 				} else {
@@ -65,6 +70,10 @@
 		public function ifEnv ($env, $pattern, $environment)
 		{
 			$this->rules[] = function () use ($env, $pattern, $environment) {
+				if (! isset($_ENV[$env])) {
+					return null;
+				}
+
 				if ($this->match($_ENV[$env], $pattern)) {
 					return $environment;
 				} else {
@@ -122,6 +131,21 @@
 
 
 		/**
+		 * Returns $environment if no other condition is matched
+		 *
+		 * @param string $environment
+		 *
+		 * @return self
+		 */
+		public function defaultTo ($environment)
+		{
+			$this->default = $environment;
+
+			return $this;
+		}
+
+
+		/**
 		 * Returns the first matched environment string, testing each condition in the order they were defined.
 		 *
 		 * @return string|null Returns null if no match is found
@@ -136,16 +160,17 @@
 				}
 			}
 
-			return null;
+			return $this->default;
 		}
 
 
 		/**
-		 * Clears any previously called environment conditions
+		 * Clears any previously called environment conditions and resets default
 		 */
 		public function clear ()
 		{
 			$this->rules = [];
+			$this->default = null;
 		}
 
 

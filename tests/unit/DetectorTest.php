@@ -125,6 +125,18 @@
 		}
 
 
+		public function testDefaultTo ()
+		{
+			$this->detector->ifBool(false, 'wrong')
+				->defaultTo('test8');
+
+			$this->assertEquals(
+				'test8',
+				$this->detector->resolve()
+			);
+		}
+
+
 		public function testMultiple ()
 		{
 			$this->detector->ifMatch('asdadas', 'nomatch', 'match')
