@@ -166,11 +166,15 @@
 
 		/**
 		 * Clears any previously called environment conditions and resets default
+		 *
+		 * @return self
 		 */
 		public function clear ()
 		{
 			$this->rules = [];
 			$this->default = null;
+
+			return $this;
 		}
 
 

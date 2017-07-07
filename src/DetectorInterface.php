@@ -85,6 +85,8 @@
 
 		/**
 		 * Clears any previously called environment conditions
+		 *
+		 * @return self
 		 */
 		public function clear ();
 
