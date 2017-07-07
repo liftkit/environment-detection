@@ -66,7 +66,7 @@ Note `php_uname('s')` reports the name of the operating system kernel.
 
 ```php
 $detector->clear() // clear previous rules
-	->ifBool(is_defined('TEST_ENVIRONMENT'), 'test')
+	->ifBool(defined('TEST_ENVIRONMENT'), 'test')
 	->defaultTo('production'); // default value
 
 $environment = $detector->resolve();
